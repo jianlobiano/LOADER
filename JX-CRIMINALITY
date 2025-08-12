@@ -1,6 +1,0 @@
-  game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "JX-CRIMINALITY!",
-            Text = "---===  FIXING  ===--- Please Wait",
-            Icon = "http://www.roblox.com/asset/?id=85279746515974",
-            Duration = 5
-        })
