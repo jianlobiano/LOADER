@@ -1,23 +1,41 @@
-
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 
+-- Game scripts with multiple IDs merged
 local games = {
-    [286090429] = "https://pandadevelopment.net/virtual/file/1200de807573471c", -- Arsenal
-    [8343259840] = "https://pandadevelopment.net/virtual/file/22f7fe58b39d2a44", -- Criminality
+    Arsenal = {
+        Ids = {286090429},
+        Script = "https://pandadevelopment.net/virtual/file/1200de807573471c"
+    },
+    Criminality = {
+        Ids = {8343259840, 4588604953},
+        Script = "https://pandadevelopment.net/virtual/file/22f7fe58b39d2a44"
+    }
 }
 
 local placeId = game.PlaceId
-local url = games[placeId]
+local foundScript = nil
+local gameName = nil
 
-if url then
+for name, data in pairs(games) do
+    for _, id in ipairs(data.Ids) do
+        if id == placeId then
+            foundScript = data.Script
+            gameName = name
+            break
+        end
+    end
+    if foundScript then break end
+end
+
+if foundScript then
     StarterGui:SetCore("SendNotification", {
         Title = "JX-Loader",
-        Text = "Script found! Loading...",
+        Text = "Loading " .. gameName .. "...",
         Icon = "http://www.roblox.com/asset/?id=85279746515974",
         Duration = 5
     })
-    loadstring(game:HttpGet(url))()
+    loadstring(game:HttpGet(foundScript))()
 else
     StarterGui:SetCore("SendNotification", {
         Title = "JX-Loader",
