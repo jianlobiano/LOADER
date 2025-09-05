@@ -4,7 +4,7 @@ local StarterGui = game:GetService("StarterGui")
 
 local games = {
     [286090429] = "https://pandadevelopment.net/virtual/file/1200de807573471c", -- Arsenal
-    [4588604953] = "https://pandadevelopment.net/virtual/file/22f7fe58b39d2a44", -- Criminality
+    [8343259840] = "https://pandadevelopment.net/virtual/file/22f7fe58b39d2a44", -- Criminality
 }
 
 local placeId = game.PlaceId
