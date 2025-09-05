@@ -1,7 +1,7 @@
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 
--- Game scripts with multiple IDs merged
+
 local games = {
     Arsenal = {
         Ids = {286090429},
