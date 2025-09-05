@@ -8,7 +8,7 @@ local games = {
         Script = "https://pandadevelopment.net/virtual/file/1200de807573471c"
     },
     Criminality = {
-        Ids = {8343259840, 4588604953, 15169310267},
+        Ids = {8343259840, 4588604953, 15169310267, 15169306359},
         Script = "https://pandadevelopment.net/virtual/file/22f7fe58b39d2a44"
     }
 }
