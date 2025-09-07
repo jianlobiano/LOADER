@@ -11,9 +11,9 @@ local games = {
         Ids = {8343259840, 4588604953, 15169310267, 15169306359, 15169303036, 15169316384},
         Script = "https://pandadevelopment.net/virtual/file/22f7fe58b39d2a44"
 },
-    Criminality = {
+    Anime Slap Tower = {
         Ids = {100055483398966},
-        Script = "loadstring(game:HttpGet('https://raw.githubusercontent.com/guthibuserx609/FREE/refs/heads/main/JX-ANIME-SLAP-TOWER'))()"
+        Script = "https://raw.githubusercontent.com/guthibuserx609/FREE/refs/heads/main/JX-ANIME-SLAP-TOWER"
     }
 }
 
