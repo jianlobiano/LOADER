@@ -5,7 +5,7 @@ local games = {
     },
     ["Criminality"] = {
         Ids = {8343259840, 4588604953, 15169310267, 15169306359, 15169303036, 15169316384},
-        Script = "https://pandadevelopment.net/virtual/file/c7c5270a55f26857"
+        Script = "https://pandadevelopment.net/virtual/file/51226b806ac35024"
     },
     ["Murder Mystery 2"] = {
         Ids = {142823291},
