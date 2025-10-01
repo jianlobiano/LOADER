@@ -17,7 +17,7 @@ local games = {
     },
     ["Anime Slap Tower"] = {
         Ids = {100055483398966},
-        Script = "https://raw.githubusercontent.com/pppoooee/tiwason/refs/heads/main/anime%20slap%20tower"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/JX-ANIME-SLAP-TOWER"
     },
     ["Blade Ball"] = {
         Ids = {13772394625, 14368557094, 14732610803, 14915220621, 15131065025, 15144787112, 15185247558, 15234596844, 15264892126, 15509350986, 15517169103, 15552588346, 15582821022, 15582823307, 16044264830, 16281300371, 16331595046, 16331596518, 16331598816, 16331600459, 16456370330, 16581637217, 16581648071, 17757592456, 92458008626219, 111661204337143},
