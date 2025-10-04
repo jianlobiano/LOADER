@@ -1,15 +1,15 @@
 local games = {
     ["Arsenal"] = {
         Ids = {286090429},
-        Script = "https://raw.githubusercontent.com/pppoooee/tiwason/refs/heads/main/arsenal"
+        Script = "https://pandadevelopment.net/virtual/file/a1f97bc3c8313f1e"
     },
     ["Criminality"] = {
         Ids = {8343259840, 4588604953, 15169310267, 15169306359, 15169303036, 15169316384},
-        Script = "https://raw.githubusercontent.com/pppoooee/tiwason/refs/heads/main/crim"
+        Script = "https://pandadevelopment.net/virtual/file/51226b806ac35024"
     },
     ["Murder Mystery 2"] = {
         Ids = {142823291},
-        Script = "https://raw.githubusercontent.com/damionki/dami/refs/heads/main/mm2"
+        Script = "https://pandadevelopment.net/virtual/file/cba338da32ebd607"
     },
     ["Build A Boat For A Treasure"] = {
         Ids = {537413528},
