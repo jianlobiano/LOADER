@@ -5,7 +5,7 @@ local games = {
     },
     ["Criminality"] = {
         Ids = {8343259840, 4588604953, 15169310267, 15169306359, 15169303036, 15169316384},
-        Script = "https://pandadevelopment.net/virtual/file/51226b806ac35024"
+        Script = "https://pandadevelopment.net/virtual/file/c7c5270a55f26857"
     },
     ["Murder Mystery 2"] = {
         Ids = {142823291},
@@ -13,7 +13,7 @@ local games = {
     },
     ["Build A Boat For A Treasure"] = {
         Ids = {537413528},
-        Script = "https://raw.githubusercontent.com/pppoooee/tiwason/refs/heads/main/build%20a%20boat%20for%20a%20treasures"
+        Script = "https://pandadevelopment.net/virtual/file/0bd8ad7c15db5aa4"
     },
     ["Anime Slap Tower"] = {
         Ids = {100055483398966},
@@ -21,7 +21,7 @@ local games = {
     },
     ["Blade Ball"] = {
         Ids = {13772394625, 14368557094, 14732610803, 14915220621, 15131065025, 15144787112, 15185247558, 15234596844, 15264892126, 15509350986, 15517169103, 15552588346, 15582821022, 15582823307, 16044264830, 16281300371, 16331595046, 16331596518, 16331598816, 16331600459, 16456370330, 16581637217, 16581648071, 17757592456, 92458008626219, 111661204337143},
-        Script = "https://raw.githubusercontent.com/pppoooee/tiwason/refs/heads/main/Blade%20Ball"
+        Script = "https://pandadevelopment.net/virtual/file/080ade9454b6d052"
     }
 }
 
@@ -423,4 +423,12 @@ else
         notify("JX-Loader", "Game not supported. Opening script selector...", 3)
         createUnsupportedGameUI()
     end)
+end)
+    end)
+endmeUI()
+    end)
+end       createUnsupportedGameUI()
+    end)
+endend)
+end    end)
 end
