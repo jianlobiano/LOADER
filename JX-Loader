@@ -56,12 +56,18 @@ local function notify(title, text, dur)
 end
 
 local function createLoadingScreen(callback)
+    local Players = game:GetService("Players")
+    local TweenService = game:GetService("TweenService")
+    
+    local player = Players.LocalPlayer
+    local playerGui = player:WaitForChild("PlayerGui")
+    
     local screenGui = Instance.new("ScreenGui")
     screenGui.Name = "JXLoadingScreen"
     screenGui.ResetOnSpawn = false
     screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    screenGui.IgnoreGuiInset = true
-    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    screenGui.DisplayOrder = 999
+    screenGui.Parent = playerGui
     
     local background = Instance.new("Frame")
     background.Name = "Background"
@@ -128,14 +134,14 @@ local function createLoadingScreen(callback)
     loadingText.TextTransparency = 1
     loadingText.Parent = background
     
-    local spinTween = game:GetService("TweenService"):Create(
+    local spinTween = TweenService:Create(
         iconFrame,
         TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1),
         {Rotation = 360}
     )
     spinTween:Play()
     
-    local loadingFadeIn = game:GetService("TweenService"):Create(
+    local loadingFadeIn = TweenService:Create(
         loadingText,
         TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
         {TextTransparency = 0}
@@ -144,19 +150,19 @@ local function createLoadingScreen(callback)
     
     wait(1.5)
     
-    local jxFadeIn = game:GetService("TweenService"):Create(
+    local jxFadeIn = TweenService:Create(
         jxText,
         TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
         {TextTransparency = 0, Position = UDim2.new(0.5, -75, 0.5, 30)}
     )
     
-    local jxJump = game:GetService("TweenService"):Create(
+    local jxJump = TweenService:Create(
         jxText,
         TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
         {Position = UDim2.new(0.5, -75, 0.5, 10)}
     )
     
-    local jxLand = game:GetService("TweenService"):Create(
+    local jxLand = TweenService:Create(
         jxText,
         TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
         {Position = UDim2.new(0.5, -75, 0.5, 30)}
