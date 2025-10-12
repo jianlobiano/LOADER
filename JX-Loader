@@ -38,7 +38,7 @@ local games = {
     ["Rivals"] = {
         Ids = {17625359962, 18126510175, 71874690745115, 117398147513099},
         Script = "https://api.junkie-development.de/api/v1/luascripts/public/0acc9e9d4fbbd5048edad3e99923d6e095dc19e1c101fee93eb8d00927f8a099/download"
-    },
+    }
 }
 
 local placeId = game.PlaceId
