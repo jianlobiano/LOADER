@@ -21,7 +21,7 @@ local games = {
     },
     ["99 Nights In The Forest"] = {
         Ids = {79546208627805, 126371807511901, 126509999114328},
-        Script = "loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/f39b4bb6a212fc14c35eae0604cbacfc91f1d4f33ccf6489fe3b610a4354b7b8/download"))()"
+        Script = "https://api.junkie-development.de/api/v1/luascripts/public/f39b4bb6a212fc14c35eae0604cbacfc91f1d4f33ccf6489fe3b610a4354b7b8/download"
     },
     ["Guess The County Flag Or Die"] = {
         Ids = {88817068170433},
