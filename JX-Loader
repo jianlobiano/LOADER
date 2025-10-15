@@ -50,6 +50,10 @@ local games = {
     ["Tower Of Zombies"] = {
         Ids = {87226801158617, 87558966821867, 99122501338948, 102894077566745, 103051712867691},
         Script = "https://api.junkie-development.de/api/v1/luascripts/public/69cd098e79dcbe2f057c7f72df2b3afe3d62d9346b6fb979018e8467ad8be715/download"
+    },
+        ["Steal A Brainrot"] = {
+        Ids = {96342491571673, 109983668079237, 128762245270197},
+        Script = "https://api.junkie-development.de/api/v1/luascripts/public/f98903390f45f7cfe5a3261ae37250febaf039b0b2c09dfa875481096e24e1b7/download"
     }
 }
 
