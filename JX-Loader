@@ -5,7 +5,7 @@ local games = {
     },
     ["Criminality"] = {
         Ids = {8343259840, 4588604953, 15169310267, 15169306359, 15169303036, 15169316384},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/7274f61cbba3869b6d35810152abd094a7d68a9e920b5ecde9ca8a282d6982a3/download"
+        Script = "https://api.junkie-development.de/api/v1/luascripts/public/85d17ec2c43891dd434ea0996cda151ecb48a66be304c36d520f36ada7099d09/download"
     },
     ["Murder Mystery 2"] = {
         Ids = {142823291},
