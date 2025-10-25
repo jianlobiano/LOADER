@@ -45,7 +45,7 @@ local games = {
     },
     ["Rivals"] = {
         Ids = {17625359962, 18126510175, 71874690745115, 117398147513099},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/0acc9e9d4fbbd5048edad3e99923d6e095dc19e1c101fee93eb8d00927f8a099/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/RIVALS"
     },
     ["Tower Of Zombies"] = {
         Ids = {87226801158617, 87558966821867, 99122501338948, 102894077566745, 103051712867691},
