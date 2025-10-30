@@ -1,3 +1,4 @@
+task.wait(2)
 local games = {
     ["Arsenal"] = {
         Ids = {286090429},
