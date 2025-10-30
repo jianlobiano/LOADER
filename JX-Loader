@@ -41,7 +41,7 @@ local games = {
     },
     ["Ro-Ghoul"] = {
         Ids = {914010731, 82244035210998, 109697727506667},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/da2cee6a7450660aac49e404723af259ba6b9775a30c355ba1de36154e7b7ea2/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/RO-GHOUL"
     },
     ["Rivals"] = {
         Ids = {17625359962, 18126510175, 71874690745115, 117398147513099},
