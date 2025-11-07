@@ -54,7 +54,7 @@ local games = {
     },
     ["Steal A Brainrot"] = {
         Ids = {96342491571673, 109983668079237, 128762245270197},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/f98903390f45f7cfe5a3261ae37250febaf039b0b2c09dfa875481096e24e1b7/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/STEAL%20A%20BRAINROT"
     },
     ["Ninja Legends"] = {
         Ids = {3956818381},
