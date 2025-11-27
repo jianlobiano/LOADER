@@ -56,6 +56,10 @@ local games = {
         Ids = {96342491571673, 109983668079237, 128762245270197},
         Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/STEAL%20A%20BRAINROT"
     },
+    ["Blox Fruit"] = {
+        Ids = {2753915549, 4442272183, 7449423635, 73902483975735, 76401440271920, 79091703265657, 85211729168715, 92968389658553, 95165932064349, 100117331123089, 101151419317285, 117896981438898, 122478697296975},
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/BLOX%20FRUITS"
+    },
     ["Ninja Legends"] = {
         Ids = {3956818381},
         Script = "https://api.junkie-development.de/api/v1/luascripts/public/784951f8e27d321ee763518fe6ab9e6c32fe0cfea63623e8a8e345e27e9143bb/download"
