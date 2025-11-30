@@ -6,7 +6,7 @@ local games = {
     },
     ["Criminality"] = {
         Ids = {8343259840, 4588604953, 15169310267, 15169306359, 15169303036, 15169316384},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/crimnal1ty"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Cr1minality"
     },
     ["Murder Mystery 2"] = {
         Ids = {142823291},
