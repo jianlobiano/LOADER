@@ -81,6 +81,10 @@ local games = {
         Ids = {93978595733734},
         Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Violence%20District"
     },
+    ["Evade"] = {
+        Ids = {9872472334, 10324346056, 10324347967, 10662542523, 10808838353, 11353528705, 96537472072550, 99214917572799, 121271605799901},
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Evade"
+    },
     ["Ninja Legends"] = {
         Ids = {3956818381},
         Script = "https://api.junkie-development.de/api/v1/luascripts/public/784951f8e27d321ee763518fe6ab9e6c32fe0cfea63623e8a8e345e27e9143bb/download"
