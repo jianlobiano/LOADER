@@ -47,7 +47,7 @@ local games = {
             16456370330, 16581637217, 16581648071, 17757592456,
             92458008626219, 111661204337143
         },
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/41cef8faa3ca6e2ee1b8327152c45ebb7387c2a07fea9fc6213c22358d8a4a3e/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Blade%20Ball"
     },
     ["Ro-Ghoul"] = {
         Ids = {914010731, 82244035210998, 109697727506667},
