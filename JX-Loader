@@ -80,7 +80,7 @@ local games = {
     },
     ["Evade"] = {
         Ids = {9872472334, 10324346056, 10324347967, 10662542523, 10808838353, 11353528705, 96537472072550, 99214917572799, 121271605799901},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Evade"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Evade"
     },
     ["Ninja Legends"] = {
         Ids = {3956818381},
