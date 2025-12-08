@@ -84,7 +84,7 @@ local games = {
     },
     ["Ninja Legends"] = {
         Ids = {3956818381},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/784951f8e27d321ee763518fe6ab9e6c32fe0cfea63623e8a8e345e27e9143bb/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Ninja%20Legends"
     }
 }
 
