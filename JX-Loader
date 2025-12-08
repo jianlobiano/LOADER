@@ -35,7 +35,7 @@ local games = {
     },
     ["Guess The County Flag Or Die"] = {
         Ids = {88817068170433},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/14bb098fe127d63fbb72cf50d1aa083529a076eb7526bf2b0fb47c0b573f7f09/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Guess%20The%20Country%20Flag%20Or%20Die"
     },
     ["Blade Ball"] = {
         Ids = {
