@@ -68,7 +68,7 @@ local games = {
     },
     ["Legends Of Speed"] = {
         Ids = {3101667897, 3232996272, 3276265788},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/e76ab61c771e2fc3bc4cf380bc2e38fa464e19e1642a7b57572d05bb5f464ab5/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Legends%20Of%20Speed"
     },
     ["Murder VS Sheriff Duels"] = {
         Ids = {12355337193, 13771457545, 14195703130, 15385224902, 75453361115735},
