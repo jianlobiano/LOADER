@@ -11,7 +11,7 @@ task.wait(2)
 local games = {
     ["Arsenal"] = {
         Ids = {286090429},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/5d5048c1f029d54563198349aa0905a7d0de11f07a1ad6af6e8c1daa93828eaf/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Arsenal"
     },
     ["Criminality"] = {
         Ids = {8343259840, 4588604953, 15169310267, 15169306359, 15169303036, 15169316384},
