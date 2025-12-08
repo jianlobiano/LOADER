@@ -60,11 +60,11 @@ local games = {
     },
     ["Steal A Brainrot"] = {
         Ids = {96342491571673, 109983668079237, 128762245270197},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/STEAL%20A%20BRAINROT"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Steal%20A%20Brainrot"
     },
     ["Blox Fruit"] = {
         Ids = {2753915549, 4442272183, 7449423635, 73902483975735, 76401440271920, 79091703265657, 85211729168715, 92968389658553, 95165932064349, 100117331123089, 101151419317285, 117896981438898, 122478697296975},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/BLOX%20FRUITS"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Blox%20Fruit"
     },
     ["Legends Of Speed"] = {
         Ids = {3101667897, 3232996272, 3276265788},
