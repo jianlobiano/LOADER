@@ -44,7 +44,7 @@ local games = {
             16581637217, 16581648071, 17757592456, 92458008626219,
             111661204337143
         },
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Blade%20Ball"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Blade%20Ball"
     },
     ["Ro-Ghoul"] = {
         Ids = {914010731, 82244035210998, 109697727506667},
