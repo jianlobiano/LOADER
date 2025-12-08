@@ -11,31 +11,31 @@ task.wait(2)
 local games = {
     ["Arsenal"] = {
         Ids = {286090429},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/5d5048c1f029d54563198349aa0905a7d0de11f07a1ad6af6e8c1daa93828eaf/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Arsenal"
     },
     ["Criminality"] = {
         Ids = {8343259840, 4588604953, 15169310267, 15169306359, 15169303036, 15169316384},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Cr1minality"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Criminality"
     },
     ["Murder Mystery 2"] = {
         Ids = {142823291},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/63afc074c20b11b6127c2b72c30b189db7cb64857372ac70f4486358bb20dfef/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Murder%20Mystery%202"
     },
     ["Build A Boat For A Treasure"] = {
         Ids = {537413528},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/be5903c369ec201c9131733c6cb3b8914f5268c6cf38224151e138d47cb2baa0/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Build%20A%20Boat%20For%20A%20Treasure"
     },
     ["Anime Slap Tower"] = {
         Ids = {100055483398966},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/3506019d1683b65e21d48ab79d3f63c9cbbe6e09027bc200cb4829e803d37356/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Anime%20Slap%20Tower"
     },
     ["99 Nights In The Forest"] = {
         Ids = {79546208627805, 126371807511901, 126509999114328},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/f39b4bb6a212fc14c35eae0604cbacfc91f1d4f33ccf6489fe3b610a4354b7b8/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/99%20Nights%20In%20The%20Forest"
     },
     ["Guess The County Flag Or Die"] = {
         Ids = {88817068170433},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/14bb098fe127d63fbb72cf50d1aa083529a076eb7526bf2b0fb47c0b573f7f09/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Guess%20The%20Country%20Flag%20Or%20Die"
     },
     ["Blade Ball"] = {
         Ids = {
@@ -47,47 +47,47 @@ local games = {
             16456370330, 16581637217, 16581648071, 17757592456,
             92458008626219, 111661204337143
         },
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Blade%20Ball"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Blade%20Ball"
     },
     ["Ro-Ghoul"] = {
         Ids = {914010731, 82244035210998, 109697727506667},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/da2cee6a7450660aac49e404723af259ba6b9775a30c355ba1de36154e7b7ea2/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Ro-Ghoul"
     },
     ["Rivals"] = {
         Ids = {17625359962, 18126510175, 71874690745115, 117398147513099},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/RIVALS"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Rivals"
     },
     ["Tower Of Zombies"] = {
         Ids = {87226801158617, 87558966821867, 99122501338948, 102894077566745, 103051712867691},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/69cd098e79dcbe2f057c7f72df2b3afe3d62d9346b6fb979018e8467ad8be715/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Tower%20Of%20Zombies"
     },
     ["Steal A Brainrot"] = {
         Ids = {96342491571673, 109983668079237, 128762245270197},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/STEAL%20A%20BRAINROT"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Steal%20A%20Brainrot"
     },
     ["Blox Fruit"] = {
         Ids = {2753915549, 4442272183, 7449423635, 73902483975735, 76401440271920, 79091703265657, 85211729168715, 92968389658553, 95165932064349, 100117331123089, 101151419317285, 117896981438898, 122478697296975},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/BLOX%20FRUITS"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Blox%20Fruit"
     },
     ["Legends Of Speed"] = {
         Ids = {3101667897, 3232996272, 3276265788},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/e76ab61c771e2fc3bc4cf380bc2e38fa464e19e1642a7b57572d05bb5f464ab5/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Legends%20Of%20Speed"
     },
     ["Murder VS Sheriff Duels"] = {
         Ids = {12355337193, 13771457545, 14195703130, 15385224902, 75453361115735},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/dc7ad4ae2433fac2f24ad0d6de04d3a7f2796e1a89e325c4c81f822a861aa97c/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Murder%20Vs%20Sheriff%20Dules"
     },
     ["Violence District"] = {
         Ids = {93978595733734},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Violence%20District"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Violence%20District"
     },
     ["Evade"] = {
         Ids = {9872472334, 10324346056, 10324347967, 10662542523, 10808838353, 11353528705, 96537472072550, 99214917572799, 121271605799901},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Evade"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Evade"
     },
     ["Ninja Legends"] = {
         Ids = {3956818381},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/784951f8e27d321ee763518fe6ab9e6c32fe0cfea63623e8a8e345e27e9143bb/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Ninja%20Legends"
     }
 }
 
