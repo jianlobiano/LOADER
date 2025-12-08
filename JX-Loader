@@ -76,7 +76,7 @@ local games = {
     },
     ["Violence District"] = {
         Ids = {93978595733734},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Violence%20District"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Violence%20District"
     },
     ["Evade"] = {
         Ids = {9872472334, 10324346056, 10324347967, 10662542523, 10808838353, 11353528705, 96537472072550, 99214917572799, 121271605799901},
