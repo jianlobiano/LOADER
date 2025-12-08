@@ -52,7 +52,7 @@ local games = {
     },
     ["Rivals"] = {
         Ids = {17625359962, 18126510175, 71874690745115, 117398147513099},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/RIVALS"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Rivals"
     },
     ["Tower Of Zombies"] = {
         Ids = {87226801158617, 87558966821867, 99122501338948, 102894077566745, 103051712867691},
