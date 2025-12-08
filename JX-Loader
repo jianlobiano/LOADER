@@ -19,7 +19,7 @@ local games = {
     },
     ["Murder Mystery 2"] = {
         Ids = {142823291},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/63afc074c20b11b6127c2b72c30b189db7cb64857372ac70f4486358bb20dfef/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Murder%20Mystery%202"
     },
     ["Build A Boat For A Treasure"] = {
         Ids = {537413528},
