@@ -23,7 +23,7 @@ local games = {
     },
     ["Build A Boat For A Treasure"] = {
         Ids = {537413528},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/be5903c369ec201c9131733c6cb3b8914f5268c6cf38224151e138d47cb2baa0/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Build%20A%20Boat%20For%20A%20Treasure"
     },
     ["Anime Slap Tower"] = {
         Ids = {100055483398966},
