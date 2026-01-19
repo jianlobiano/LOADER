@@ -49,6 +49,10 @@ local games = {
                125624013879756, 132745842491660},
         Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Flee%20The%20Facility"
     },
+    ["Flick"] = {
+        Ids = {136801880565837},
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Flick"
+    },
     ["Guess The County Flag Or Die"] = {
         Ids = {88817068170433},
         Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Guess%20The%20Country%20Flag%20Or%20Die"
