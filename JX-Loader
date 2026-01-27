@@ -15,7 +15,7 @@ local games = {
     },
     ["Anime Slap Tower"] = {
         Ids = {100055483398966},
-        Script = "https://api.junkie-development.de/api/v1/luascripts/public/3506019d1683b65e21d48ab79d3f63c9cbbe6e09027bc200cb4829e803d37356/download"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Anime%20Slap%20Tower"
     },
     ["Arsenal"] = {
         Ids = {286090429},
