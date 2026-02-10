@@ -7451,6 +7451,10 @@ function Library:CreateWindow(WindowInfo)
             Library:Toggle()
         end, true)
 
+        local LockButton = Library:AddDraggableButton("Lock", function(self)
+            Library.CantDragForced = not Library.CantDragForced
+            self:SetText(Library.CantDragForced and "Unlock" or "Lock")
+        end, true)
 
         if WindowInfo.MobileButtonsSide == "Right" then
             ToggleButton.Button.Position = UDim2.new(1, -6, 0, 6)
