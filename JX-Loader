@@ -21,10 +21,10 @@ local games = {
         Ids = {286090429},
         Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Arsenal"
     },
-["Blade Ball"] = {
-    Ids = {13772394625, 14368557094, 14732610803, 14915220621, 15131065025, 15144787112, 15185247558, 15234596844, 15264892126, 15509350986, 15517169103, 15552588346, 15582821022, 15582823307, 16044264830, 16281300371, 16331595046, 16331596518, 16331598816, 16331600459, 16456370330, 16581637217, 16581648071, 17757592456, 92458008626219, 111661204337143},
-    Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Blade%20Ball"
-},
+    ["Blade Ball"] = {
+        Ids = {13772394625, 14368557094, 14732610803, 14915220621, 15131065025, 15144787112, 15185247558, 15234596844, 15264892126, 15509350986, 15517169103, 15552588346, 15582821022, 15582823307, 16044264830, 16281300371, 16331595046, 16331596518, 16331598816, 16331600459, 16456370330, 16581637217, 16581648071, 17757592456, 92458008626219, 111661204337143},
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Blade%20Ball"
+    },
     ["Blox Fruit"] = {
         Ids = {2753915549, 4442272183, 7449423635, 73902483975735, 76401440271920, 
                79091703265657, 85211729168715, 92968389658553, 95165932064349, 
@@ -119,132 +119,6 @@ local function notify(title, text, dur)
             Icon = "http://www.roblox.com/asset/?id=85279746515974",
             Duration = dur or 5
         })
-    end)
-end
-
-local function createLoadingScreen(callback)
-    local Players = game:GetService("Players")
-    local TweenService = game:GetService("TweenService")
-    
-    local player = Players.LocalPlayer
-    local playerGui = player:WaitForChild("PlayerGui")
-    
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "JXLoadingScreen"
-    screenGui.ResetOnSpawn = false
-    screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    screenGui.DisplayOrder = 999
-    screenGui.Parent = playerGui
-    
-    local background = Instance.new("Frame")
-    background.Name = "Background"
-    background.Size = UDim2.new(1, 0, 1, 100)
-    background.Position = UDim2.new(0, 0, 0, -100)
-    background.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-    background.BorderSizePixel = 0
-    background.ZIndex = 10
-    background.Parent = screenGui
-    
-    local gradient = Instance.new("UIGradient")
-    gradient.Color = ColorSequence.new{
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 25, 35)),
-        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(15, 15, 25)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(35, 25, 45))
-    }
-    gradient.Rotation = 45
-    gradient.Parent = background
-    
-    local iconFrame = Instance.new("Frame")
-    iconFrame.Name = "IconFrame"
-    iconFrame.Size = UDim2.new(0, 120, 0, 120)
-    iconFrame.Position = UDim2.new(0.5, -60, 0.5, -100)
-    iconFrame.BackgroundTransparency = 1
-    iconFrame.ZIndex = 11
-    iconFrame.Parent = background
-    
-    local icon = Instance.new("ImageLabel")
-    icon.Name = "RobloxIcon"
-    icon.Size = UDim2.new(1, 0, 1, 0)
-    icon.Position = UDim2.new(0, 0, 0, 0)
-    icon.BackgroundTransparency = 1
-    icon.Image = "rbxassetid://85279746515974"
-    icon.ZIndex = 12
-    icon.Parent = iconFrame
-    
-    local iconCorner = Instance.new("UICorner")
-    iconCorner.CornerRadius = UDim.new(0.5, 0)
-    iconCorner.Parent = icon
-    
-    local jxText = Instance.new("TextLabel")
-    jxText.Name = "JXText"
-    jxText.Size = UDim2.new(0, 150, 0, 80)
-    jxText.Position = UDim2.new(0.5, -75, 0.5, 50)
-    jxText.BackgroundTransparency = 1
-    jxText.Text = "JX"
-    jxText.TextColor3 = Color3.fromRGB(255, 255, 255)
-    jxText.TextScaled = true
-    jxText.Font = Enum.Font.GothamBold
-    jxText.ZIndex = 13
-    jxText.TextTransparency = 1
-    jxText.Parent = background
-    
-    local loadingText = Instance.new("TextLabel")
-    loadingText.Name = "LoadingText"
-    loadingText.Size = UDim2.new(0, 300, 0, 40)
-    loadingText.Position = UDim2.new(0.5, -150, 0.5, 120)
-    loadingText.BackgroundTransparency = 1
-    loadingText.Text = "Loading..."
-    loadingText.TextColor3 = Color3.fromRGB(200, 200, 200)
-    loadingText.TextScaled = true
-    loadingText.Font = Enum.Font.Gotham
-    loadingText.ZIndex = 13
-    loadingText.TextTransparency = 1
-    loadingText.Parent = background
-    
-    local spinTween = TweenService:Create(
-        iconFrame,
-        TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1),
-        {Rotation = 360}
-    )
-    spinTween:Play()
-    
-    local loadingFadeIn = TweenService:Create(
-        loadingText,
-        TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-        {TextTransparency = 0}
-    )
-    loadingFadeIn:Play()
-    
-    wait(1.5)
-    
-    local jxFadeIn = TweenService:Create(
-        jxText,
-        TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
-        {TextTransparency = 0, Position = UDim2.new(0.5, -75, 0.5, 30)}
-    )
-    
-    local jxJump = TweenService:Create(
-        jxText,
-        TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-        {Position = UDim2.new(0.5, -75, 0.5, 10)}
-    )
-    
-    local jxLand = TweenService:Create(
-        jxText,
-        TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
-        {Position = UDim2.new(0.5, -75, 0.5, 30)}
-    )
-    
-    jxFadeIn:Play()
-    jxFadeIn.Completed:Connect(function()
-        jxJump:Play()
-        jxJump.Completed:Connect(function()
-            jxLand:Play()
-            wait(1)
-            spinTween:Cancel()
-            screenGui:Destroy()
-            if callback then callback() end
-        end)
     end)
 end
 
@@ -493,12 +367,8 @@ local function createUnsupportedGameUI()
 end
 
 if foundScript then
-    createLoadingScreen(function()
-        loadScript(foundScript, gameName)
-    end)
+    loadScript(foundScript, gameName)
 else
-    createLoadingScreen(function()
-        notify("JX-Loader", "Game not supported. Opening script selector...", 3)
-        createUnsupportedGameUI()
-    end)
+    notify("JX-Loader", "Game not supported. Opening script selector...", 3)
+    createUnsupportedGameUI()
 end
