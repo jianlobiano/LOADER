@@ -5553,6 +5553,14 @@ local Library do
                 }
                 SubKeybind.Mode = SubKeybind.DefaultMode
                 local SubKeybindItems = { }
+                local KeyListItem
+                if Library.KeyList then KeyListItem = Library.KeyList:Add(Toggle.Name, "None") end
+                local function UpdateKeyList()
+                    if KeyListItem then
+                        KeyListItem:Set(Toggle.Name, SubKeybind.Value)
+                        KeyListItem:SetStatus(Toggle.Value)
+                    end
+                end
                 local RightContainer = GetRightContainer()
                 SubKeybindItems["Container"] = Instances:Create("Frame", {
                     Parent = RightContainer.Instance,
@@ -5751,6 +5759,7 @@ local Library do
                         SubKeybindItems["KeyButton"].Instance.Text = KeyStr
                         Library.Flags[SubKeybind.Flag] = { Key = SubKeybind.Key, Mode = SubKeybind.Mode }
                         SubKeybind.Picking = false
+                        UpdateKeyList()
                     end
                 end
                 SubKeybindItems["KeyButton"]:Connect("MouseButton1Click", function()
@@ -5797,6 +5806,8 @@ local Library do
                 function SubKeybind:Get() return SubKeybind.Key, SubKeybind.Value, SubKeybind.Mode end
                 function SubKeybind:Set(Key) SetKey(Key) end
                 function SubKeybind:SetMode(Mode) SetMode(Mode) end
+                SubKeybind.UpdateKeyList = UpdateKeyList
+                Toggle.SubKeybindRef = SubKeybind
                 return SubKeybind
             end
 
@@ -5822,6 +5833,10 @@ local Library do
 
                 if Toggle.Callback then 
                     Library:SafeCall(Toggle.Callback, Toggle.Value)
+                end
+                
+                if Toggle.SubKeybindRef and Toggle.SubKeybindRef.UpdateKeyList then
+                    Toggle.SubKeybindRef.UpdateKeyList()
                 end
             end
 
