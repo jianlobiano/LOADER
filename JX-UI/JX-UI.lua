@@ -2084,6 +2084,9 @@ local Library do
             end
             function Keybind:Set(Key)
                 if StringFind(tostring(Key), "Enum") then
+                    if tostring(Key) == tostring(Enum.UserInputType.Touch) then
+                        Key = Enum.KeyCode.Backspace
+                    end
                     Keybind.Key = tostring(Key)
                     local KeyName
                     if type(Key) == "string" then
@@ -2099,6 +2102,9 @@ local Library do
                     if Data.Callback then Library:SafeCall(Data.Callback, Keybind.Toggled) end
                     Update()
                 elseif type(Key) == "table" and Key.Key ~= nil then
+                    if tostring(Key.Key) == tostring(Enum.UserInputType.Touch) then
+                        Key.Key = Enum.KeyCode.Backspace
+                    end
                     Keybind.Key = tostring(Key.Key)
                     local KeyName
                     if type(Key.Key) == "string" then
@@ -2121,9 +2127,17 @@ local Library do
             end
             Items["KeyButton"]:Connect("MouseButton1Click", function()
                 Keybind.Picking = true
+                local PrevKey, PrevValue = Keybind.Key, Keybind.Value
                 Items["KeyButton"].Instance.Text = "."
                 local InputBegan
                 InputBegan = UserInputService.InputBegan:Connect(function(Input)
+                    if Input.UserInputType == Enum.UserInputType.Touch then
+                        Keybind.Picking = false
+                        Keybind.Key, Keybind.Value = PrevKey, PrevValue
+                        Items["KeyButton"].Instance.Text = PrevValue or "None"
+                        if InputBegan then InputBegan:Disconnect() InputBegan = nil end
+                        return
+                    end
                     if Input.UserInputType == Enum.UserInputType.Keyboard then Keybind:Set(Input.KeyCode)
                     else Keybind:Set(Input.UserInputType) end
                     if InputBegan then InputBegan:Disconnect() InputBegan = nil end
@@ -2134,7 +2148,7 @@ local Library do
             Items["Always"]:Connect("MouseButton1Down", function() Keybind:SetMode("Always") end)
             Library:Connect(UserInputService.InputBegan, function(Input)
                 if Keybind.Value == "None" or Keybind.Picking then return end
-                if tostring(Input.KeyCode) == Keybind.Key or tostring(Input.UserInputType) == Keybind.Key then
+                if Input.UserInputType ~= Enum.UserInputType.Touch and (tostring(Input.KeyCode) == Keybind.Key or tostring(Input.UserInputType) == Keybind.Key) then
                     if Keybind.ModeSelected == "Toggle" then Keybind:Press()
                     elseif Keybind.ModeSelected == "Hold" then Keybind:Press(true)
                     elseif Keybind.ModeSelected == "Always" then Keybind:Press(true) end
@@ -2142,7 +2156,7 @@ local Library do
             end)
             Library:Connect(UserInputService.InputEnded, function(Input)
                 if Keybind.Value == "None" then return end
-                if tostring(Input.KeyCode) == Keybind.Key or tostring(Input.UserInputType) == Keybind.Key then
+                if Input.UserInputType ~= Enum.UserInputType.Touch and (tostring(Input.KeyCode) == Keybind.Key or tostring(Input.UserInputType) == Keybind.Key) then
                     if Keybind.ModeSelected == "Hold" then Keybind:Press(false)
                     elseif Keybind.ModeSelected == "Always" then Keybind:Press(true) end
                 end
@@ -3856,7 +3870,7 @@ local Library do
             Library:Connect(UserInputService.InputBegan, function(Input)
                 local MenuBindData = Library.Flags.MenuBind
                 local CurrentMenuKey = MenuBindData and MenuBindData.Key or Library.MenuKeybind
-                if tostring(Input.KeyCode) == CurrentMenuKey or tostring(Input.UserInputType) == CurrentMenuKey then
+                if tostring(Input.KeyCode) == CurrentMenuKey or (Input.UserInputType ~= Enum.UserInputType.Touch and tostring(Input.UserInputType) == CurrentMenuKey) then
                     Window:SetOpen(not Window.IsOpen)
                 end
             end)
@@ -5746,6 +5760,9 @@ local Library do
                 end
                 local function SetKey(Key)
                     if StringFind(tostring(Key), "Enum") then
+                        if tostring(Key) == tostring(Enum.UserInputType.Touch) then
+                            Key = Enum.KeyCode.Backspace
+                        end
                         SubKeybind.Key = tostring(Key)
                         local KeyName
                         if type(Key) == "string" then
@@ -5764,9 +5781,17 @@ local Library do
                 end
                 SubKeybindItems["KeyButton"]:Connect("MouseButton1Click", function()
                     SubKeybind.Picking = true
+                    local PrevKey, PrevValue = SubKeybind.Key, SubKeybind.Value
                     SubKeybindItems["KeyButton"].Instance.Text = "..."
                     local InputBegan
                     InputBegan = UserInputService.InputBegan:Connect(function(Input)
+                        if Input.UserInputType == Enum.UserInputType.Touch then
+                            SubKeybind.Picking = false
+                            SubKeybind.Key, SubKeybind.Value = PrevKey, PrevValue
+                            SubKeybindItems["KeyButton"].Instance.Text = PrevValue or "None"
+                            if InputBegan then InputBegan:Disconnect() InputBegan = nil end
+                            return
+                        end
                         if Input.UserInputType == Enum.UserInputType.Keyboard then
                             SetKey(Input.KeyCode)
                         else
@@ -5777,7 +5802,7 @@ local Library do
                 end)
                 Library:Connect(UserInputService.InputBegan, function(Input)
                     if SubKeybind.Value == "None" or SubKeybind.Picking then return end
-                    if tostring(Input.KeyCode) == SubKeybind.Key or tostring(Input.UserInputType) == SubKeybind.Key then
+                    if Input.UserInputType ~= Enum.UserInputType.Touch and (tostring(Input.KeyCode) == SubKeybind.Key or tostring(Input.UserInputType) == SubKeybind.Key) then
                         if SubKeybind.Mode == "Toggle" then
                             Toggle:Set(not Toggle.Value)
                         elseif SubKeybind.Mode == "Hold" then
@@ -5787,7 +5812,7 @@ local Library do
                 end)
                 Library:Connect(UserInputService.InputEnded, function(Input)
                     if SubKeybind.Value == "None" then return end
-                    if SubKeybind.Mode == "Hold" and (tostring(Input.KeyCode) == SubKeybind.Key or tostring(Input.UserInputType) == SubKeybind.Key) then
+                    if Input.UserInputType ~= Enum.UserInputType.Touch and SubKeybind.Mode == "Hold" and (tostring(Input.KeyCode) == SubKeybind.Key or tostring(Input.UserInputType) == SubKeybind.Key) then
                         Toggle:Set(false)
                     end
                 end)
@@ -7802,6 +7827,9 @@ local Library do
 
             function Keybind:Set(Key)
                 if StringFind(tostring(Key), "Enum") then 
+                    if tostring(Key) == tostring(Enum.UserInputType.Touch) then
+                        Key = Enum.KeyCode.Backspace
+                    end
                     Keybind.Key = tostring(Key)
 
                     local KeyName
@@ -7830,6 +7858,9 @@ local Library do
 
                     Update()
                 elseif type(Key) == "table" and Key.Key ~= nil then
+                    if tostring(Key.Key) == tostring(Enum.UserInputType.Touch) then
+                        Key.Key = Enum.KeyCode.Backspace
+                    end
                     Keybind.Key = tostring(Key.Key)
 
                     if Key.Mode or Key.ModeSelected then
@@ -7889,6 +7920,13 @@ local Library do
 
                 local InputBegan
                 InputBegan = UserInputService.InputBegan:Connect(function(Input)
+                    if Input.UserInputType == Enum.UserInputType.Touch then
+                        Keybind.Picking = false
+                        Items["KeyButton"].Instance.Text = Keybind.Value or "None"
+                        InputBegan:Disconnect()
+                        InputBegan = nil
+                        return
+                    end
                     if Input.UserInputType == Enum.UserInputType.Keyboard then 
                         Keybind:Set(Input.KeyCode)
                     else
@@ -7902,6 +7940,9 @@ local Library do
 
             Library:Connect(UserInputService.InputBegan, function(Input)
                 if Keybind.Value == "None" then
+                    return
+                end
+                if Input.UserInputType == Enum.UserInputType.Touch then
                     return
                 end
 
@@ -7938,6 +7979,9 @@ local Library do
 
             Library:Connect(UserInputService.InputEnded, function(Input)
                 if Keybind.Value == "None" then
+                    return
+                end
+                if Input.UserInputType == Enum.UserInputType.Touch then
                     return
                 end
 
