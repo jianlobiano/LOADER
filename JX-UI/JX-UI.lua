@@ -3464,7 +3464,9 @@ local Library do
         
                         if Settings.IsOpen then 
                             for Index, Value in Settings.Elements do
-                                Value:RefreshPosition(true)
+                                if type(Value.RefreshPosition) == "function" then
+                                    Value:RefreshPosition(true)
+                                end
                                 task.wait(0.03)
                             end
     
@@ -3485,7 +3487,9 @@ local Library do
                             Library.OpenFrames[Settings] = Settings 
                         else
                             for Index, Value in Settings.Elements do
-                                Value:RefreshPosition(false)
+                                if type(Value.RefreshPosition) == "function" then
+                                    Value:RefreshPosition(false)
+                                end
                             end
     
                             if Library.OpenFrames[Settings] then 
@@ -5365,7 +5369,9 @@ local Library do
 
             function Section:TweenElements(Bool, Debounce)
                 for Index, Value in Section.Elements do
-                    Value:RefreshPosition(Bool)
+                    if type(Value.RefreshPosition) == "function" then
+                        Value:RefreshPosition(Bool)
+                    end
                     if not Debounce then 
                         task.wait(0.03)
                     end
@@ -6014,7 +6020,9 @@ local Library do
                     if Settings.IsOpen then 
                         task.spawn(function()
                             for Index, Value in Settings.Elements do
-                                Value:RefreshPosition(true)
+                                if type(Value.RefreshPosition) == "function" then
+                                    Value:RefreshPosition(true)
+                                end
                                 task.wait(0.03)
                             end
                         end)
@@ -6038,7 +6046,9 @@ local Library do
                         Library.OpenFrames[Settings] = Settings 
                     else
                         for Index, Value in Settings.Elements do
-                            Value:RefreshPosition(false)
+                            if type(Value.RefreshPosition) == "function" then
+                                Value:RefreshPosition(false)
+                            end
                         end
 
                         if Library.OpenFrames[Settings] then 
