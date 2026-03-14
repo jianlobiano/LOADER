@@ -8004,9 +8004,12 @@ local Library do
                 ModeSelected = "Toggle",
                 Toggled = false,
                 Picking = false,
-                Key = ""
+                Key = "",
+                ModeMenuOpen = false
             }
+            Sub2keybind.ModeSelected = Sub2keybind.Mode
 
+            local UpdateSub2ModeVisuals
             local Items = { } do
                 Items["Label"] = Instances:Create("Frame", {
                     Parent = Sub2keybind.Section.Items["Content"].Instance,
@@ -8065,6 +8068,159 @@ local Library do
                     TextSize = 12,
                     BackgroundColor3 = FromRGB(255, 255, 255)
                 })  Items["KeyButton"]:AddToTheme({TextColor3 = "Text"})
+
+                local ModeMenuFrame = Instances:Create("Frame", {
+                    Parent = Library.UnusedHolder.Instance,
+                    Name = "\0",
+                    Visible = false,
+                    ClipsDescendants = false,
+                    Size = UDim2New(0, 55, 0, 44),
+                    Position = UDim2New(0, 0, 0, 0),
+                    BorderColor3 = FromRGB(0, 0, 0),
+                    ZIndex = 500,
+                    BorderSizePixel = 0,
+                    BackgroundColor3 = FromRGB(27, 26, 29)
+                })  ModeMenuFrame:AddToTheme({BackgroundColor3 = "Element"})
+                Instances:Create("UICorner", { Parent = ModeMenuFrame.Instance, Name = "\0", CornerRadius = UDimNew(0, 4) })
+                Instances:Create("UIListLayout", {
+                    Parent = ModeMenuFrame.Instance,
+                    Name = "\0",
+                    Padding = UDimNew(0, 2),
+                    SortOrder = Enum.SortOrder.LayoutOrder,
+                    VerticalAlignment = Enum.VerticalAlignment.Top
+                })
+                Instances:Create("UIPadding", {
+                    Parent = ModeMenuFrame.Instance,
+                    Name = "\0",
+                    PaddingTop = UDimNew(0, 3),
+                    PaddingBottom = UDimNew(0, 3),
+                    PaddingLeft = UDimNew(0, 4),
+                    PaddingRight = UDimNew(0, 4)
+                })
+                local TweenInfoHover = TweenInfo.new(Library.Tween.Time + 0.15, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+                local AccentColor = Library.Theme.Accent or FromRGB(255, 80, 80)
+                local function CreateModeOption(Name, IsSelected)
+                    local Row = Instances:Create("TextButton", {
+                        Parent = ModeMenuFrame.Instance,
+                        Name = "\0",
+                        FontFace = Library.Font,
+                        TextColor3 = IsSelected and FromRGB(240, 240, 240) or FromRGB(160, 160, 165),
+                        Text = "",
+                        AutoButtonColor = false,
+                        Size = UDim2New(1, -8, 0, 16),
+                        BorderSizePixel = 0,
+                        ZIndex = 501,
+                        TextSize = 12,
+                        TextXAlignment = Enum.TextXAlignment.Left,
+                        BackgroundColor3 = FromRGB(0, 0, 0),
+                        BackgroundTransparency = 1
+                    })
+                    Row.Instance.LayoutOrder = Name == "Toggle" and 0 or 1
+                    local CircleContainer = Instances:Create("Frame", {
+                        Parent = Row.Instance,
+                        Name = "\0",
+                        Size = UDim2New(0, 14, 0, 16),
+                        Position = UDim2New(0, 0, 0, 0),
+                        BorderSizePixel = 0,
+                        BackgroundTransparency = 1
+                    })
+                    local Circle = Instances:Create("Frame", {
+                        Parent = CircleContainer.Instance,
+                        Name = "\0",
+                        Size = UDim2New(0, 5, 0, 5),
+                        AnchorPoint = Vector2New(0.5, 0.5),
+                        Position = UDim2New(0.5, 0, 0.5, 0),
+                        BorderColor3 = FromRGB(0, 0, 0),
+                        ZIndex = 502,
+                        BorderSizePixel = 0,
+                        BackgroundColor3 = AccentColor,
+                        BackgroundTransparency = IsSelected and 0 or 1
+                    })
+                    Instances:Create("UICorner", { Parent = Circle.Instance, Name = "\0", CornerRadius = UDimNew(1, 0) })
+                    local CircleStroke = Instances:Create("UIStroke", {
+                        Parent = Circle.Instance,
+                        Name = "\0",
+                        Color = AccentColor,
+                        Thickness = 1,
+                        Transparency = IsSelected and 1 or 0
+                    })
+                    local Label = Instances:Create("TextLabel", {
+                        Parent = Row.Instance,
+                        Name = "\0",
+                        FontFace = Library.Font,
+                        TextColor3 = IsSelected and FromRGB(240, 240, 240) or FromRGB(160, 160, 165),
+                        Text = Name,
+                        Size = UDim2New(1, -18, 0, 16),
+                        Position = UDim2New(0, 14, 0, 0),
+                        BackgroundTransparency = 1,
+                        TextXAlignment = Enum.TextXAlignment.Left,
+                        TextSize = 12,
+                        ZIndex = 502
+                    })
+                    Row:OnHover(function()
+                        Label:Tween(TweenInfoHover, {TextColor3 = FromRGB(255, 255, 255)})
+                    end)
+                    Row:OnHoverLeave(function()
+                        local active = (Name == "Toggle" and Sub2keybind.ModeSelected == "Toggle") or (Name == "Hold" and Sub2keybind.ModeSelected == "Hold")
+                        Label:Tween(TweenInfoHover, {TextColor3 = active and FromRGB(240, 240, 240) or FromRGB(160, 160, 165)})
+                    end)
+                    return { Row = Row, Circle = Circle, CircleStroke = CircleStroke, Label = Label }
+                end
+                local MenuToggle = CreateModeOption("Toggle", Sub2keybind.ModeSelected == "Toggle")
+                local MenuHold = CreateModeOption("Hold", Sub2keybind.ModeSelected == "Hold")
+                local function UpdateModeVisuals()
+                    local toggleSel = Sub2keybind.ModeSelected == "Toggle"
+                    local holdSel = Sub2keybind.ModeSelected == "Hold"
+                    MenuToggle.Circle.Instance.BackgroundTransparency = toggleSel and 0 or 1
+                    MenuToggle.CircleStroke.Instance.Transparency = toggleSel and 1 or 0
+                    MenuToggle.Label.Instance.TextColor3 = toggleSel and FromRGB(240, 240, 240) or FromRGB(160, 160, 165)
+                    MenuHold.Circle.Instance.BackgroundTransparency = holdSel and 0 or 1
+                    MenuHold.CircleStroke.Instance.Transparency = holdSel and 1 or 0
+                    MenuHold.Label.Instance.TextColor3 = holdSel and FromRGB(240, 240, 240) or FromRGB(160, 160, 165)
+                end
+                UpdateSub2ModeVisuals = UpdateModeVisuals
+                local function CloseModeMenu()
+                    if not Sub2keybind.ModeMenuOpen then return end
+                    Sub2keybind.ModeMenuOpen = false
+                    ModeMenuFrame.Instance.Visible = false
+                    ModeMenuFrame.Instance.Parent = Library.UnusedHolder.Instance
+                end
+                local function SetMode(Mode)
+                    Sub2keybind.ModeSelected = Mode
+                    Sub2keybind.Mode = Mode
+                    UpdateModeVisuals()
+                    Library.Flags[Sub2keybind.Flag] = { Mode = Sub2keybind.ModeSelected, Key = Sub2keybind.Key, Toggled = Sub2keybind.Toggled }
+                end
+                MenuToggle.Row:Connect("MouseButton1Click", function()
+                    SetMode("Toggle")
+                    CloseModeMenu()
+                end)
+                MenuHold.Row:Connect("MouseButton1Click", function()
+                    SetMode("Hold")
+                    CloseModeMenu()
+                end)
+                local function OpenModeMenu()
+                    if Sub2keybind.ModeMenuOpen then CloseModeMenu() return end
+                    Sub2keybind.ModeMenuOpen = true
+                    ModeMenuFrame.Instance.Parent = Library.Holder.Instance
+                    ModeMenuFrame.Instance.Visible = true
+                    local ContainerPos = Items["KeyContainer"].Instance.AbsolutePosition
+                    local ContainerSize = Items["KeyContainer"].Instance.AbsoluteSize
+                    ModeMenuFrame.Instance.Position = UDim2New(0, ContainerPos.X + ContainerSize.X - 55, 0, ContainerPos.Y + ContainerSize.Y + 4)
+                end
+                Items["KeyContainer"]:Connect("InputBegan", function(Input)
+                    if Input.UserInputType == Enum.UserInputType.MouseButton2 then OpenModeMenu() end
+                end)
+                Items["KeyButton"]:Connect("InputBegan", function(Input)
+                    if Input.UserInputType == Enum.UserInputType.MouseButton2 then OpenModeMenu() end
+                end)
+                Library:Connect(UserInputService.InputBegan, function(Input)
+                    if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.MouseButton2 or Input.UserInputType == Enum.UserInputType.Touch then
+                        if Sub2keybind.ModeMenuOpen and not Library:IsMouseOverFrame(ModeMenuFrame) and not Library:IsMouseOverFrame(Items["KeyContainer"]) then
+                            CloseModeMenu()
+                        end
+                    end
+                end)
             end
 
             local KeyListItem
@@ -8100,7 +8256,11 @@ local Library do
                     UpdateKeyList()
                 elseif type(Key) == "table" and Key.Key ~= nil then
                     Sub2keybind.Key = tostring(Key.Key)
-                    if Key.Mode or Key.ModeSelected then Sub2keybind.ModeSelected = Key.Mode or Key.ModeSelected end
+                    if Key.Mode or Key.ModeSelected then
+                        Sub2keybind.ModeSelected = Key.Mode or Key.ModeSelected
+                        Sub2keybind.Mode = Sub2keybind.ModeSelected
+                        if UpdateSub2ModeVisuals then UpdateSub2ModeVisuals() end
+                    end
                     SetKeyDisplay()
                     Library.Flags[Sub2keybind.Flag] = { Mode = Sub2keybind.ModeSelected, Key = Sub2keybind.Key, Toggled = Sub2keybind.Toggled }
                     if Data.Callback then Library:SafeCall(Data.Callback, Sub2keybind.Toggled) end
