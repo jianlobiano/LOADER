@@ -2084,9 +2084,6 @@ local Library do
             end
             function Keybind:Set(Key)
                 if StringFind(tostring(Key), "Enum") then
-                    if tostring(Key) == tostring(Enum.UserInputType.Touch) then
-                        Key = Enum.KeyCode.Backspace
-                    end
                     Keybind.Key = tostring(Key)
                     local KeyName
                     if type(Key) == "string" then
@@ -2102,9 +2099,6 @@ local Library do
                     if Data.Callback then Library:SafeCall(Data.Callback, Keybind.Toggled) end
                     Update()
                 elseif type(Key) == "table" and Key.Key ~= nil then
-                    if tostring(Key.Key) == tostring(Enum.UserInputType.Touch) then
-                        Key.Key = Enum.KeyCode.Backspace
-                    end
                     Keybind.Key = tostring(Key.Key)
                     local KeyName
                     if type(Key.Key) == "string" then
@@ -2127,17 +2121,9 @@ local Library do
             end
             Items["KeyButton"]:Connect("MouseButton1Click", function()
                 Keybind.Picking = true
-                local PrevKey, PrevValue = Keybind.Key, Keybind.Value
                 Items["KeyButton"].Instance.Text = "."
                 local InputBegan
                 InputBegan = UserInputService.InputBegan:Connect(function(Input)
-                    if Input.UserInputType == Enum.UserInputType.Touch then
-                        Keybind.Picking = false
-                        Keybind.Key, Keybind.Value = PrevKey, PrevValue
-                        Items["KeyButton"].Instance.Text = PrevValue or "None"
-                        if InputBegan then InputBegan:Disconnect() InputBegan = nil end
-                        return
-                    end
                     if Input.UserInputType == Enum.UserInputType.Keyboard then Keybind:Set(Input.KeyCode)
                     else Keybind:Set(Input.UserInputType) end
                     if InputBegan then InputBegan:Disconnect() InputBegan = nil end
@@ -2148,7 +2134,7 @@ local Library do
             Items["Always"]:Connect("MouseButton1Down", function() Keybind:SetMode("Always") end)
             Library:Connect(UserInputService.InputBegan, function(Input)
                 if Keybind.Value == "None" or Keybind.Picking then return end
-                if Input.UserInputType ~= Enum.UserInputType.Touch and (tostring(Input.KeyCode) == Keybind.Key or tostring(Input.UserInputType) == Keybind.Key) then
+                if tostring(Input.KeyCode) == Keybind.Key or tostring(Input.UserInputType) == Keybind.Key then
                     if Keybind.ModeSelected == "Toggle" then Keybind:Press()
                     elseif Keybind.ModeSelected == "Hold" then Keybind:Press(true)
                     elseif Keybind.ModeSelected == "Always" then Keybind:Press(true) end
@@ -2156,7 +2142,7 @@ local Library do
             end)
             Library:Connect(UserInputService.InputEnded, function(Input)
                 if Keybind.Value == "None" then return end
-                if Input.UserInputType ~= Enum.UserInputType.Touch and (tostring(Input.KeyCode) == Keybind.Key or tostring(Input.UserInputType) == Keybind.Key) then
+                if tostring(Input.KeyCode) == Keybind.Key or tostring(Input.UserInputType) == Keybind.Key then
                     if Keybind.ModeSelected == "Hold" then Keybind:Press(false)
                     elseif Keybind.ModeSelected == "Always" then Keybind:Press(true) end
                 end
@@ -3870,7 +3856,7 @@ local Library do
             Library:Connect(UserInputService.InputBegan, function(Input)
                 local MenuBindData = Library.Flags.MenuBind
                 local CurrentMenuKey = MenuBindData and MenuBindData.Key or Library.MenuKeybind
-                if tostring(Input.KeyCode) == CurrentMenuKey or (Input.UserInputType ~= Enum.UserInputType.Touch and tostring(Input.UserInputType) == CurrentMenuKey) then
+                if tostring(Input.KeyCode) == CurrentMenuKey or tostring(Input.UserInputType) == CurrentMenuKey then
                     Window:SetOpen(not Window.IsOpen)
                 end
             end)
@@ -5760,9 +5746,6 @@ local Library do
                 end
                 local function SetKey(Key)
                     if StringFind(tostring(Key), "Enum") then
-                        if tostring(Key) == tostring(Enum.UserInputType.Touch) then
-                            Key = Enum.KeyCode.Backspace
-                        end
                         SubKeybind.Key = tostring(Key)
                         local KeyName
                         if type(Key) == "string" then
@@ -5781,17 +5764,9 @@ local Library do
                 end
                 SubKeybindItems["KeyButton"]:Connect("MouseButton1Click", function()
                     SubKeybind.Picking = true
-                    local PrevKey, PrevValue = SubKeybind.Key, SubKeybind.Value
                     SubKeybindItems["KeyButton"].Instance.Text = "..."
                     local InputBegan
                     InputBegan = UserInputService.InputBegan:Connect(function(Input)
-                        if Input.UserInputType == Enum.UserInputType.Touch then
-                            SubKeybind.Picking = false
-                            SubKeybind.Key, SubKeybind.Value = PrevKey, PrevValue
-                            SubKeybindItems["KeyButton"].Instance.Text = PrevValue or "None"
-                            if InputBegan then InputBegan:Disconnect() InputBegan = nil end
-                            return
-                        end
                         if Input.UserInputType == Enum.UserInputType.Keyboard then
                             SetKey(Input.KeyCode)
                         else
@@ -5802,7 +5777,7 @@ local Library do
                 end)
                 Library:Connect(UserInputService.InputBegan, function(Input)
                     if SubKeybind.Value == "None" or SubKeybind.Picking then return end
-                    if Input.UserInputType ~= Enum.UserInputType.Touch and (tostring(Input.KeyCode) == SubKeybind.Key or tostring(Input.UserInputType) == SubKeybind.Key) then
+                    if tostring(Input.KeyCode) == SubKeybind.Key or tostring(Input.UserInputType) == SubKeybind.Key then
                         if SubKeybind.Mode == "Toggle" then
                             Toggle:Set(not Toggle.Value)
                         elseif SubKeybind.Mode == "Hold" then
@@ -5812,7 +5787,7 @@ local Library do
                 end)
                 Library:Connect(UserInputService.InputEnded, function(Input)
                     if SubKeybind.Value == "None" then return end
-                    if Input.UserInputType ~= Enum.UserInputType.Touch and SubKeybind.Mode == "Hold" and (tostring(Input.KeyCode) == SubKeybind.Key or tostring(Input.UserInputType) == SubKeybind.Key) then
+                    if SubKeybind.Mode == "Hold" and (tostring(Input.KeyCode) == SubKeybind.Key or tostring(Input.UserInputType) == SubKeybind.Key) then
                         Toggle:Set(false)
                     end
                 end)
@@ -7827,9 +7802,6 @@ local Library do
 
             function Keybind:Set(Key)
                 if StringFind(tostring(Key), "Enum") then 
-                    if tostring(Key) == tostring(Enum.UserInputType.Touch) then
-                        Key = Enum.KeyCode.Backspace
-                    end
                     Keybind.Key = tostring(Key)
 
                     local KeyName
@@ -7858,9 +7830,6 @@ local Library do
 
                     Update()
                 elseif type(Key) == "table" and Key.Key ~= nil then
-                    if tostring(Key.Key) == tostring(Enum.UserInputType.Touch) then
-                        Key.Key = Enum.KeyCode.Backspace
-                    end
                     Keybind.Key = tostring(Key.Key)
 
                     if Key.Mode or Key.ModeSelected then
@@ -7920,13 +7889,6 @@ local Library do
 
                 local InputBegan
                 InputBegan = UserInputService.InputBegan:Connect(function(Input)
-                    if Input.UserInputType == Enum.UserInputType.Touch then
-                        Keybind.Picking = false
-                        Items["KeyButton"].Instance.Text = Keybind.Value or "None"
-                        InputBegan:Disconnect()
-                        InputBegan = nil
-                        return
-                    end
                     if Input.UserInputType == Enum.UserInputType.Keyboard then 
                         Keybind:Set(Input.KeyCode)
                     else
@@ -7940,9 +7902,6 @@ local Library do
 
             Library:Connect(UserInputService.InputBegan, function(Input)
                 if Keybind.Value == "None" then
-                    return
-                end
-                if Input.UserInputType == Enum.UserInputType.Touch then
                     return
                 end
 
@@ -7979,9 +7938,6 @@ local Library do
 
             Library:Connect(UserInputService.InputEnded, function(Input)
                 if Keybind.Value == "None" then
-                    return
-                end
-                if Input.UserInputType == Enum.UserInputType.Touch then
                     return
                 end
 
@@ -8028,6 +7984,175 @@ local Library do
 
             Keybind.Section.Elements[#Keybind.Section.Elements+1] = Keybind
             return Keybind 
+        end
+
+        Library.Sections.Sub2keybind = function(self, Data)
+            Data = Data or { }
+
+            local Sub2keybind = {
+                Window = self.Window,
+                Page = self.Page,
+                Section = self,
+
+                Name = Data.Name or Data.name or "Keybind",
+                Flag = Data.Flag or Data.flag or Library:NextFlag(),
+                Default = Data.Default or Data.default or Enum.KeyCode.RightShift,
+                Callback = Data.Callback or Data.callback or function() end,
+                Mode = Data.Mode or Data.mode or "Toggle",
+
+                Value = "",
+                ModeSelected = "Toggle",
+                Toggled = false,
+                Picking = false,
+                Key = ""
+            }
+
+            local Items = { } do
+                Items["Label"] = Instances:Create("Frame", {
+                    Parent = Sub2keybind.Section.Items["Content"].Instance,
+                    Name = "\0",
+                    BackgroundTransparency = 1,
+                    Size = UDim2New(1, 0, 0, 20),
+                    BorderColor3 = FromRGB(0, 0, 0),
+                    BorderSizePixel = 0,
+                    BackgroundColor3 = FromRGB(255, 255, 255)
+                })
+
+                Items["Text"] = Instances:Create("TextLabel", {
+                    Parent = Items["Label"].Instance,
+                    Name = "\0",
+                    FontFace = Library.Font,
+                    TextColor3 = FromRGB(240, 240, 240),
+                    TextTransparency = 0.30000001192092896,
+                    Text = Sub2keybind.Name,
+                    AutomaticSize = Enum.AutomaticSize.X,
+                    Size = UDim2New(0, 0, 0, 15),
+                    BorderSizePixel = 0,
+                    BackgroundTransparency = 1,
+                    Position = UDim2New(0, 0, 0, 2),
+                    BorderColor3 = FromRGB(0, 0, 0),
+                    ZIndex = 2,
+                    TextSize = 14,
+                    BackgroundColor3 = FromRGB(255, 255, 255)
+                })  Items["Text"]:AddToTheme({TextColor3 = "Text"})
+
+                Items["KeyContainer"] = Instances:Create("Frame", {
+                    Parent = Items["Label"].Instance,
+                    Name = "\0",
+                    Size = UDim2New(0, 70, 0, 18),
+                    AnchorPoint = Vector2New(1, 0),
+                    Position = UDim2New(1, 0, 0, 1),
+                    BorderColor3 = FromRGB(0, 0, 0),
+                    ZIndex = 2,
+                    BorderSizePixel = 0,
+                    BackgroundColor3 = FromRGB(27, 26, 29)
+                })  Items["KeyContainer"]:AddToTheme({BackgroundColor3 = "Element"})
+                Instances:Create("UICorner", { Parent = Items["KeyContainer"].Instance, Name = "\0", CornerRadius = UDimNew(0, 4) })
+
+                Items["KeyButton"] = Instances:Create("TextButton", {
+                    Parent = Items["KeyContainer"].Instance,
+                    Name = "\0",
+                    FontFace = Library.Font,
+                    TextColor3 = FromRGB(240, 240, 240),
+                    TextTransparency = 0.30000001192092896,
+                    Text = "None",
+                    AutoButtonColor = false,
+                    BorderColor3 = FromRGB(0, 0, 0),
+                    Size = UDim2New(1, 0, 1, 0),
+                    BackgroundTransparency = 1,
+                    BorderSizePixel = 0,
+                    ZIndex = 2,
+                    TextSize = 12,
+                    BackgroundColor3 = FromRGB(255, 255, 255)
+                })  Items["KeyButton"]:AddToTheme({TextColor3 = "Text"})
+            end
+
+            local KeyListItem
+            if Library.KeyList then KeyListItem = Library.KeyList:Add(Sub2keybind.Name, "") end
+
+            local function UpdateKeyList()
+                if KeyListItem then KeyListItem:Set(Sub2keybind.Name, Sub2keybind.Value) KeyListItem:SetStatus(Sub2keybind.Toggled) end
+            end
+
+            local function SetKeyDisplay()
+                local KeyStr = Keys[Sub2keybind.Key] or StringGSub(StringGSub(tostring(Sub2keybind.Key), "Enum%.KeyCode%.", ""), "Enum%.UserInputType%.", "") or "None"
+                Sub2keybind.Value = KeyStr
+                Items["KeyButton"].Instance.Text = KeyStr
+                UpdateKeyList()
+            end
+
+            function Sub2keybind:Set(Key)
+                if StringFind(tostring(Key), "Enum") then
+                    Sub2keybind.Key = tostring(Key)
+                    local KeyName
+                    if type(Key) == "string" then
+                        KeyName = Key:match("[^%.]+$") or "None"
+                        if KeyName == "Backspace" then KeyName = "None" end
+                    else
+                        KeyName = Key.Name == "Backspace" and "None" or Key.Name
+                    end
+                    local KeyStr = Keys[Sub2keybind.Key] or StringGSub(StringGSub(KeyName or "", "KeyCode%.", ""), "UserInputType%.", "") or KeyName or "None"
+                    Sub2keybind.Value = KeyStr
+                    Items["KeyButton"].Instance.Text = KeyStr
+                    Library.Flags[Sub2keybind.Flag] = { Mode = Sub2keybind.ModeSelected, Key = Sub2keybind.Key, Toggled = Sub2keybind.Toggled }
+                    if Data.Callback then Library:SafeCall(Data.Callback, Sub2keybind.Toggled) end
+                    Sub2keybind.Picking = false
+                    UpdateKeyList()
+                elseif type(Key) == "table" and Key.Key ~= nil then
+                    Sub2keybind.Key = tostring(Key.Key)
+                    if Key.Mode or Key.ModeSelected then Sub2keybind.ModeSelected = Key.Mode or Key.ModeSelected end
+                    SetKeyDisplay()
+                    Library.Flags[Sub2keybind.Flag] = { Mode = Sub2keybind.ModeSelected, Key = Sub2keybind.Key, Toggled = Sub2keybind.Toggled }
+                    if Data.Callback then Library:SafeCall(Data.Callback, Sub2keybind.Toggled) end
+                end
+                Sub2keybind.Picking = false
+            end
+
+            function Sub2keybind:Press(Bool)
+                if Sub2keybind.ModeSelected == "Toggle" then Sub2keybind.Toggled = not Sub2keybind.Toggled
+                elseif Sub2keybind.ModeSelected == "Hold" then Sub2keybind.Toggled = Bool
+                elseif Sub2keybind.ModeSelected == "Always" then Sub2keybind.Toggled = true end
+                Library.Flags[Sub2keybind.Flag] = { Mode = Sub2keybind.ModeSelected, Key = Sub2keybind.Key, Toggled = Sub2keybind.Toggled }
+                if Data.Callback then Library:SafeCall(Data.Callback, Sub2keybind.Toggled) end
+                UpdateKeyList()
+            end
+
+            function Sub2keybind:Get()
+                return Sub2keybind.Key, Sub2keybind.ModeSelected, Sub2keybind.Toggled
+            end
+
+            Items["KeyButton"]:Connect("MouseButton1Click", function()
+                Sub2keybind.Picking = true
+                Items["KeyButton"].Instance.Text = "..."
+                local InputBegan
+                InputBegan = UserInputService.InputBegan:Connect(function(Input)
+                    if Input.UserInputType == Enum.UserInputType.Keyboard then Sub2keybind:Set(Input.KeyCode)
+                    else Sub2keybind:Set(Input.UserInputType) end
+                    if InputBegan then InputBegan:Disconnect() InputBegan = nil end
+                end)
+            end)
+
+            Library:Connect(UserInputService.InputBegan, function(Input)
+                if Sub2keybind.Value == "None" or Sub2keybind.Picking then return end
+                if tostring(Input.KeyCode) == Sub2keybind.Key or tostring(Input.UserInputType) == Sub2keybind.Key then
+                    if Sub2keybind.ModeSelected == "Toggle" then Sub2keybind:Press()
+                    elseif Sub2keybind.ModeSelected == "Hold" then Sub2keybind:Press(true)
+                    elseif Sub2keybind.ModeSelected == "Always" then Sub2keybind:Press(true) end
+                end
+            end)
+            Library:Connect(UserInputService.InputEnded, function(Input)
+                if Sub2keybind.Value == "None" then return end
+                if tostring(Input.KeyCode) == Sub2keybind.Key or tostring(Input.UserInputType) == Sub2keybind.Key then
+                    if Sub2keybind.ModeSelected == "Hold" then Sub2keybind:Press(false)
+                    elseif Sub2keybind.ModeSelected == "Always" then Sub2keybind:Press(true) end
+                end
+            end)
+
+            if Sub2keybind.Default then Sub2keybind:Set({ Mode = Data.Mode or "Toggle", Key = Sub2keybind.Default }) end
+            Library.SetFlags[Sub2keybind.Flag] = function(Value) Sub2keybind:Set(Value) end
+
+            Sub2keybind.Section.Elements[#Sub2keybind.Section.Elements+1] = Sub2keybind
+            return Sub2keybind
         end
 
         Library.Sections.Textbox = function(self, Data)
