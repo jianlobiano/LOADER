@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/JX-UI/JX-UI.lua"))()
-local CheatName = "UI-Rework By Jianlobiano"
+local CheatName = "JX-Blox Fruit"
 
 Library.Folders = {
     Directory = CheatName,
@@ -14,27 +14,24 @@ Library.Theme.Accent = Accent
 Library.Theme.AccentGradient = Gradient
 Library:ChangeTheme("Accent", Accent)
 Library:ChangeTheme("AccentGradient", Gradient)
-
 local Window = Library:Window({
-    Name = "UI",
-    SubName = "Rework By Jianlobiano",
+    Name = "Ro-Ghoul",
+    SubName = "JX | Dsc.gg/getjxs",
     Logo = "85279746515974"
 })
 
 local KeybindList = Library:KeybindList("Keybinds")
-
 Library:Watermark({
-    "UI",
-    "By Human From Earth",
+    "JX",
+    "By Jianlobiano",
     85279746515974
 })
-
 Library:Notification({
-    Title = "Notification",
-    Description = "Rework By Jianlobiano",
-    Duration = 5,
-    Icon = "85279746515974"
-})
+            Title = "JX",
+            Description = "Dont Forget To Join Discord Server | Dsc.gg/getjxs!",
+            Duration = 5,
+            Icon = "85279746515974"
+        })
 
 task.spawn(function()
     while true do
@@ -43,15 +40,13 @@ task.spawn(function()
         pcall(function()
             pingValue = math.floor(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue())
         end)
-
         Library:Watermark({
             85279746515974,
-            "UI | Rework By Jianlobiano",
-            "By Human From Earth",
+            "JX | Dsc.gg/getjxs",
+            "By Jianlobiano",
             "FPS: " .. FPS,
             "Ping: " .. pingValue .. "ms"
         })
-
         task.wait(1)
     end
 end)
@@ -69,7 +64,6 @@ local LegitToggle = MainSection:Toggle({
         print("Legit Enabled:", Value)
     end
 })
-
 LegitToggle:SubKeybind({
     Flag = "LegitEnabledKey",
     Default = Enum.KeyCode.V,
@@ -84,7 +78,6 @@ local AnotherToggle = MainSection:Toggle({
         print("Auto Farm:", Value)
     end
 })
-
 AnotherToggle:Keybind({
     Flag = "AutoFarmKey",
     Default = Enum.KeyCode.F,
@@ -98,7 +91,6 @@ local EspToggle = MainSection:Toggle({
         print("ESP:", Value)
     end
 })
-
 EspToggle:SubColorpicker({
     Flag = "EspColor",
     Default = Color3.fromRGB(255, 100, 100),
@@ -115,12 +107,10 @@ local DualColorToggle = MainSection:Toggle({
         print("Dual Color:", Value)
     end
 })
-
 DualColorToggle:SubColorpicker({
     Flag = "DualColor1",
     Default = Color3.fromRGB(255, 100, 100),
 })
-
 DualColorToggle:SubColorpicker({
     Flag = "DualColor2",
     Default = Color3.fromRGB(100, 200, 255),
@@ -134,17 +124,14 @@ local FullToggle = MainSection:Toggle({
         print("Full Feature:", Value)
     end
 })
-
 FullToggle:SubColorpicker({
     Flag = "FullFeatureColor1",
     Default = Color3.fromRGB(100, 200, 255),
 })
-
 FullToggle:SubColorpicker({
     Flag = "FullFeatureColor2",
     Default = Color3.fromRGB(255, 200, 100),
 })
-
 FullToggle:SubKeybind({
     Flag = "FullFeatureKey",
     Default = Enum.KeyCode.Backspace,
@@ -183,7 +170,6 @@ MainSection:Label("ESP Color"):Colorpicker({
 })
 
 local MiscSection = LegitPage:Section({Name = "Misc", Side = 2})
-
 MiscSection:Button({
     Name = "Test Notification",
     Callback = function()
@@ -205,12 +191,20 @@ MiscSection:Keybind({
     end
 })
 
-Window:Category("Settings")
+MiscSection:Sub2keybind({
+    Name = "Action key",
+    Flag = "actionkey",
+    Default = Enum.KeyCode.G,
+    Mode = "Toggle",
+    Callback = function(Toggled)
+        print("Sub2keybind pressed, Toggled:", Toggled)
+    end
+})
 
+Window:Category("Settings")
 local SettingsPage = Library:CreateSettingsPage(Window, KeybindList)
 
 local SilentLoadEnabled = false
-
 pcall(function()
     local path = Library.Folders.Configs .. "/silentload.txt"
     if isfile and isfile(path) and readfile then
@@ -228,8 +222,8 @@ if SilentLoadEnabled and Window.SetOpen then
 end
 
 Library:Notification({
-    Title = "Notification",
-    Description = "Script Has Been Successfully Loaded!",
-    Duration = 5,
-    Icon = "85279746515974"
-})
+            Title = "JX",
+            Description = "Script Has Been Successfully Loaded!",
+            Duration = 5,
+            Icon = "85279746515974"
+        })
