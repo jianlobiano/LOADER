@@ -8281,6 +8281,16 @@ local Library do
                 return Sub2keybind.Key, Sub2keybind.ModeSelected, Sub2keybind.Toggled
             end
 
+            function Sub2keybind:RefreshPosition(Bool)
+                if Bool then
+                    Items["Text"]:Tween(TweenInfo.new(1, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2New(0, 0, 0, 2)})
+                    Items["KeyContainer"]:Tween(TweenInfo.new(1, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2New(1, 0, 0, 1)})
+                else
+                    Items["Text"].Instance.Position = UDim2New(0, 30, 0, 2)
+                    Items["KeyContainer"].Instance.Position = UDim2New(1, 30, 0, 1)
+                end
+            end
+
             Items["KeyButton"]:Connect("MouseButton1Click", function()
                 Sub2keybind.Picking = true
                 Items["KeyButton"].Instance.Text = "..."
