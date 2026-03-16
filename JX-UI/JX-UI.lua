@@ -2587,7 +2587,7 @@ local Library do
                 Items["MainFrame"]:MakeResizeable(Vector2New(Items["MainFrame"].Instance.AbsoluteSize.X, Items["MainFrame"].Instance.AbsoluteSize.Y), Vector2New(9999, 9999), OriginalSizes)
                 Library:MakeBlurred(Items["MainFrame"], Window)
                 
-                Items["LeftTabs"] = Instances:Create("Frame", {
+                Items["LeftTabs"] = Instances:Create("ScrollingFrame", {
                     Parent = Items["MainFrame"].Instance,
                     Name = "\0",
                     Visible = true,
@@ -2597,9 +2597,16 @@ local Library do
                     Size = UDim2New(0, 225, 1, 0),
                     ZIndex = 2,
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(27, 25, 29)
+                    BackgroundColor3 = FromRGB(27, 25, 29),
+                    Active = true,
+                    AutomaticCanvasSize = Enum.AutomaticSize.Y,
+                    CanvasSize = UDim2New(0, 0, 0, 0),
+                    ScrollBarThickness = 2,
+                    ScrollingDirection = Enum.ScrollingDirection.Y,
+                    VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
                 })  Items["LeftTabs"]:AddToTheme({BackgroundColor3 = "Background"})
 
+                Items["LeftTabs"]:AddToTheme({ScrollBarImageColor3 = "Accent"})
                 Library:MakeBlurred(Items["LeftTabs"], Window)
 
                 local Gui = Items["MainFrame"].Instance
@@ -7304,9 +7311,14 @@ local Library do
                 if DefaultVal then
                     Dropdown:Set(DefaultVal)
                 else
-                    Dropdown.Value = nil
-                    Library.Flags[Dropdown.Flag] = nil
-                    Items["Value"].Instance.Text = "..." 
+                    if Dropdown.Multi then
+                        Dropdown.Value = {}
+                        Library.Flags[Dropdown.Flag] = Dropdown.Value
+                    else
+                        Dropdown.Value = nil
+                        Library.Flags[Dropdown.Flag] = nil
+                    end
+                    Items["Value"].Instance.Text = "..."
                 end
             end
 
