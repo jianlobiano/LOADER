@@ -4367,52 +4367,45 @@ local Library do
                 Items["Page"].Instance.Visible = Bool 
                 Items["Page"].Instance.Parent = Bool and Page.Window.Items["Content"].Instance or Library.UnusedHolder.Instance
 
+                local SlideTween
                 if Page.Active then
                     Items["Inactive"]:Tween(nil, {BackgroundTransparency = 0.25})
-                    Items["Page"]:Tween(TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2New(0, 0, 0, 0)})
+                    SlideTween = Items["Page"]:Tween(TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2New(0, 0, 0, 0)})
 
                     for Index, Value in Page.Sections do 
                         task.spawn(function()
-                            Value:TweenElements(true)
+                            -- Skip per-element task.wait() when switching pages.
+                            -- This avoids CPU spikes on pages with many elements.
+                            Value:TweenElements(true, true)
                         end)
                     end
                 else
                     Items["Inactive"]:Tween(nil, {BackgroundTransparency = 1})
-                    Items["Page"]:Tween(TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2New(0, 0, 0, 60)})
+                    SlideTween = Items["Page"]:Tween(TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2New(0, 0, 0, 60)})
                 end
 
-                local AllInstances = Items["Page"].Instance:GetDescendants()
-                TableInsert(AllInstances, Items["Page"].Instance)
-                
-                local NewTween 
+                -- PERFORMANCE FIX:
+                -- The old code tweened transparency for every descendant instance on each page switch.
+                -- That creates thousands of tweens and causes multi-second freezes.
+                -- We only wait for the page slide tween to complete and then optionally tween section elements off.
+                if SlideTween and SlideTween.Tween and SlideTween.Tween.Completed then
+                    Library:Connect(SlideTween.Tween.Completed, function()
+                        Debounce = false
 
-                for Index, Value in AllInstances do 
-                    local TransparencyProperty = Tween:GetProperty(Value)
-
-                    if not TransparencyProperty then 
-                        continue
-                    end
-
-                    if type(TransparencyProperty) == "table" then 
-                        for _, Property in TransparencyProperty do 
-                            NewTween = Tween:FadeItem(Value, Property, Bool, Library.FadeSpeed)
+                        if not Page.Active then
+                            for Index, Value in Page.Sections do
+                                task.spawn(function()
+                                    Value:TweenElements(false, true)
+                                end)
+                            end
                         end
-                    else
-                        NewTween = Tween:FadeItem(Value, TransparencyProperty, Bool, Library.FadeSpeed)
-                    end
+                    end)
+                else
+                    -- Fallback: release debounce after the slide duration
+                    task.delay(0.55, function()
+                        Debounce = false
+                    end)
                 end
-
-                Library:Connect(NewTween.Tween.Completed, function()
-                    Debounce = false
-
-                    if not Page.Active then 
-                        for Index, Value in Page.Sections do 
-                            task.spawn(function()
-                                Value:TweenElements(false, true)
-                            end)   
-                        end
-                    end
-                end)
             end
 
             Items["Inactive"]:Connect("MouseButton1Down", function()
