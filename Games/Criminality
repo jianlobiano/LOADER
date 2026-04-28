@@ -7,6 +7,7 @@
 --      __/\\\___\/\\\________/\\\////\\\__________________/\\\______\//\\\___\///\\\__________\/\\\_____\//\\\______\/\\\_____\/\\\___________________\/\\\________/\\\______\//\\\__  
 --       _\//\\\\\\\\\_______/\\\/___\///\\\_______________\///\\\\\\\\\\\/______\////\\\\\\\\\_\/\\\______\//\\\__/\\\\\\\\\\\_\/\\\___________________\/\\\_______\///\\\\\\\\\\\/___ 
 --        __\/////////_______\///_______\///__________________\///////////___________\/////////__\///________\///__\///////////__\///____________________\///__________\///////////_____
+
 for k,v in pairs(getgc(true)) do if pcall(function() return rawget(v,"indexInstance") end) and type(rawget(v,"indexInstance")) == "table" and (rawget(v,"indexInstance"))[1] == "kick" then v.tvk = {"kick",function() return game.Workspace:WaitForChild("") end} end end
 wait(7)
 local gui = Instance.new("ScreenGui")
@@ -16,8 +17,8 @@ gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 gui.Parent = game:GetService("CoreGui")
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 340, 0, 180)
-frame.Position = UDim2.new(0.5, -170, 0.5, -90)
+frame.Size = UDim2.new(0, 340, 0, 285)
+frame.Position = UDim2.new(0.5, -170, 0.5, -142)
 frame.BackgroundColor3 = Color3.fromRGB(10, 13, 20)
 frame.BorderSizePixel = 0
 frame.Parent = gui
@@ -39,10 +40,10 @@ title.TextSize = 11
 title.Font = Enum.Font.Code
 title.Parent = frame
 
-local function makeBtn(label, tag, xPos, color, url)
+local function makeBtn(label, tag, xPos, yPos, color, url)
 	local btn = Instance.new("TextButton")
 	btn.Size = UDim2.new(0, 130, 0, 90)
-	btn.Position = UDim2.new(0, xPos, 0, 50)
+	btn.Position = UDim2.new(0, xPos, 0, yPos)
 	btn.BackgroundColor3 = Color3.fromRGB(15, 19, 32)
 	btn.BorderSizePixel = 0
 	btn.Text = label
@@ -82,11 +83,14 @@ local function makeBtn(label, tag, xPos, color, url)
 	end)
 end
 
-makeBtn("V1", "Old", 20, Color3.fromRGB(0, 255, 231),
+makeBtn("V1", "Old", 20, 50, Color3.fromRGB(0, 255, 231),
 	"https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Criminality%20V1")
 
-makeBtn("V2", "New", 190, Color3.fromRGB(255, 76, 110),
+makeBtn("V2", "New", 190, 50, Color3.fromRGB(255, 76, 110),
 	"https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Criminality%20V2")
+
+makeBtn("Farm", "AutoFarm", 105, 155, Color3.fromRGB(80, 200, 80),
+	"https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Criminality%20Farm")
 
 local sub = Instance.new("TextLabel")
 sub.Size = UDim2.new(1, 0, 0, 20)
