@@ -75,7 +75,7 @@ local games = {
     },
     ["Rivals"] = {
         Ids = {17625359962, 18126510175, 71874690745115, 117398147513099},
-        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Rivals"
+        Script = "https://raw.githubusercontent.com/jianlobiano/LOADER/refs/heads/main/Games/Rivals%20Undetected"
     },
     ["Ro-Ghoul"] = {
         Ids = {914010731, 82244035210998, 109697727506667},
